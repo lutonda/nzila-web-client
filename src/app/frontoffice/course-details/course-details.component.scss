@@ -1,0 +1,86 @@
+        .thim-course-info span.value {
+            width: 90px;
+            float: right;
+            font-weight: 100;
+        }
+        
+        .thim-course-info ul1.list-group i.fa {
+            margin: 0 10px;
+        }
+        
+        .banner-detalhes-info-list {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+        }
+        
+        .banner-detalhes-info-list {
+            font-size: .875em;
+            list-style: none;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+        }
+        
+        @media (min-width: 1000px) {
+            .banner-detalhes-info-item {
+                -webkit-box-pack: justify;
+                justify-content: space-around;
+            }
+        }
+        
+        @media (min-width: 600px) {
+            .banner-detalhes-info-item-time {
+                min-width: 140px;
+            }
+        }
+        
+        .banner-detalhes-info-item {
+            margin: 5px 0;
+            width: auto;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            padding: 3px 10px;
+        }
+        
+        .banner-detalhes-info-list {
+            font-size: .875em;
+            list-style: none;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+        }
+        
+        .banner-detalhes-info-item-time:before {
+            background-image: url(/assets/img/icons/default/icon-time.1570550707.svg);
+        }
+        
+        .banner-detalhes-info-item-video:before {
+            background-image: url(/assets/img/icons/default/icon-video.1570550707.svg);
+        }
+        
+        .banner-detalhes-info-item-exercises:before {
+            background-image: url(/assets/img/icons/default/icon-exercises.1570550707.svg);
+        }
+        
+        .banner-detalhes-info-item:before {
+            height: 22px;
+            width: 22px;
+        }
+        
+        .banner-detalhes-info-item:before,
+        .banner-detalhes-about-item-faq:before,
+        .banner-detalhes-info-item-categoria:before {
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            min-height: 19px;
+            min-width: 19px;
+            height: 19px;
+            width: 19px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            margin-right: 5px;
+        }
