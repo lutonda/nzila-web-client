@@ -1,3 +1,5 @@
+import { BackofficeModule } from './backoffice/backoffice.module';
+import { FrontofficeModule } from './frontoffice/frontoffice.module';
 import { UserService } from './services/user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -10,9 +12,6 @@ import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
 import { ProfileComponent } from './profile/profile.component';
-import { HomeComponent } from './home/home.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { FooterComponent } from './shared/footer/footer.component';
 
 import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
@@ -21,7 +20,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ListCourseComponent } from './courses/list-course/list-course.component';
 import { DetailCourseComponent } from './courses/detail-course/detail-course.component';
 import { LandingCourseComponent } from './courses/landing-course/landing-course.component';
-import { ParallaxDirective } from './components/parallax.directive';
+import { ParallaxDirective } from './frontoffice/components/parallax.directive';
 
 const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
@@ -31,8 +30,6 @@ const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigato
     SignupComponent,
     LandingComponent,
     ProfileComponent,
-    NavbarComponent,
-    FooterComponent,
     LoginComponent,
     ListCourseComponent,
     DetailCourseComponent,
@@ -47,7 +44,8 @@ const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigato
     AppRoutingModule,
     HomeModule,
     HttpClientModule,
-
+    FrontofficeModule,
+    BackofficeModule,
     MsalModule.forRoot({
       auth: {
         clientId: '69446787-f523-4cf3-b858-e382c4587278', // This is your client ID
