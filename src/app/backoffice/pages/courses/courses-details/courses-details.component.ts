@@ -1,3 +1,8 @@
+import { ChapterForm } from './../../../forms/chapter.form';
+
+import { NgForm, FormArray, FormBuilder, Validators, AbstractControl } from "@angular/forms";
+
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,7 +16,11 @@ import { CoursesService } from '../../../../services/courses.service';
 export class CoursesDetailsComponent implements OnInit {
 
   course:any={}
-  constructor(private service:CoursesService, private route: ActivatedRoute) { }
+
+  closeResult='';
+  constructor(private service:CoursesService, private route: ActivatedRoute, private modalService: NgbModal,private fb: FormBuilder) { }
+
+  form = this.fb.group(new ChapterForm(this.fb) );
 
   ngOnInit(): void {
 
@@ -22,6 +31,13 @@ export class CoursesDetailsComponent implements OnInit {
       //this.hymn.parts.forEach((part: Part)=>part.order=part.typePart.description=='Stanza' ? this.order++ : 0)
       //this.msbapAudioUrl = `http://${this.service.serverAddress()}/api/v1/files/${this.hymn.files[0].identity}`;
     })
+    
+  }
+  open(content) {
+    this.modalService.open(content, { size: 'lg' ,ariaLabelledBy: 'modal-basic-title'})
+  }
+  save(){
+
   }
 
 }

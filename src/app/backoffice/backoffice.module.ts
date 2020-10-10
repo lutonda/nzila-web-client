@@ -2,7 +2,7 @@ import { ComponentsModule } from './components/components.module';
 import { ClipboardModule } from 'ngx-clipboard';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MapsComponent } from './pages/maps/maps.component';
 import { IconsComponent } from './pages/icons/icons.component';
 import { TablesComponent } from './pages/tables/tables.component';
@@ -17,11 +17,12 @@ import { CoursesListComponent } from './pages/courses/courses-list/courses-list.
 import { CoursesStartComponent } from './pages/courses/courses-start/courses-start.component';
 import { CoursesCreateComponent } from './pages/courses/courses-create/courses-create.component';
 import { CoursesDetailsComponent } from './pages/courses/courses-details/courses-details.component';
+import { ChapterBarComponent } from './components/chapter-bar/chapter-bar.component';
 
 
 @NgModule({
   declarations: [BackofficeComponent,
-  
+
     DashboardComponent,
     UserProfileComponent,
     TablesComponent,
@@ -30,8 +31,10 @@ import { CoursesDetailsComponent } from './pages/courses/courses-details/courses
     CoursesListComponent,
     CoursesStartComponent,
     CoursesCreateComponent,
-    CoursesDetailsComponent],
+    CoursesDetailsComponent,
+    ChapterBarComponent],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     BackofficeRoutingModule,
     FormsModule,
