@@ -1,3 +1,8 @@
+import { TypeTaskService } from './../../../../services/type-task.service';
+import { TypeTask } from './../../../models/typeTask';
+import { Course } from './../../../models/course';
+import { ChapterService } from './../../../../services/chapter.service';
+import { Chapter } from './../../../models/chapter';
 import { ChapterForm } from './../../../forms/chapter.form';
 
 import { NgForm, FormArray, FormBuilder, Validators, AbstractControl } from "@angular/forms";
@@ -15,29 +20,36 @@ import { CoursesService } from '../../../../services/courses.service';
 })
 export class CoursesDetailsComponent implements OnInit {
 
-  course:any={}
+  course: Course = new Course()
 
-  closeResult='';
-  constructor(private service:CoursesService, private route: ActivatedRoute, private modalService: NgbModal,private fb: FormBuilder) { }
-
-  form = this.fb.group(new ChapterForm(this.fb) );
+  closeResult = '';
+  typeTasks: Array<TypeTask> = [];
+  constructor(private service: CoursesService,
+    private route: ActivatedRoute,
+    private modalService: NgbModal,
+    private fb: FormBuilder,
+    private chapterService: ChapterService,
+    private typeTaskService: TypeTaskService) { }
 
   ngOnInit(): void {
 
     let id = this.route.snapshot.paramMap.get('id');
-    this.service.getOne(id).subscribe(data => {
-      this.course = data.data
+    this.service.getOne(id).subscribe(data => this.course = data.data)
+    this.typeTaskService.getAll().subscribe(data => this.typeTasks = data.data)
 
-      //this.hymn.parts.forEach((part: Part)=>part.order=part.typePart.description=='Stanza' ? this.order++ : 0)
-      //this.msbapAudioUrl = `http://${this.service.serverAddress()}/api/v1/files/${this.hymn.files[0].identity}`;
-    })
-    
   }
   open(content) {
-    this.modalService.open(content, { size: 'lg' ,ariaLabelledBy: 'modal-basic-title'})
+    this.modalService.open(content, { size: 'lg', ariaLabelledBy: 'modal-basic-title' })
   }
-  save(){
-
+  chapter: Chapter = new Chapter();
+  chapterForm = this.fb.group(new ChapterForm(this.fb));
+  saveChapterForm() {
+    this.chapter.course = this.course;
+    this.chapterService.create(this.chapter).subscribe(data => {
+      this.chapter = data.data;
+      this.course.chapters.push(this.chapter);
+      this.chapter = new Chapter();
+    })
   }
 
 }

@@ -18,6 +18,7 @@ import { CoursesStartComponent } from './pages/courses/courses-start/courses-sta
 import { CoursesCreateComponent } from './pages/courses/courses-create/courses-create.component';
 import { CoursesDetailsComponent } from './pages/courses/courses-details/courses-details.component';
 import { ChapterBarComponent } from './components/chapter-bar/chapter-bar.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 @NgModule({
@@ -41,7 +42,9 @@ import { ChapterBarComponent } from './components/chapter-bar/chapter-bar.compon
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-    ComponentsModule
+    ComponentsModule,
+
+    CKEditorModule
   ],
   exports: [
     BackofficeComponent

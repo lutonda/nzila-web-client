@@ -98,7 +98,20 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Card tables</h3>
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <h3 class="mb-0">Courses</h3>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="#!" class="btn btn-sm btn-primary">Blog</a>
+                            <a href="#!" class="btn btn-sm btn-primary">Shedules</a>
+                            <a href="#!" class="btn btn-sm btn-primary">Tasks</a>
+                            <a href="#!" class="btn btn-sm btn-primary">People</a>
+                            <button class="btn" (click)="open(content)">
+                                <i class="ni ni-fat-add "></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
@@ -120,7 +133,7 @@
                                             <img alt="Image placeholder" src="assets/img/theme/illu3@2x.png">
                                         </a>
                                         <div class="media-body">
-                                            <span class="mb-0 text-sm">{{course.name}}</span><br> {{course.category.name}}
+                                            <a [routerLink]="['/staff/courses/details/'+course._id]" class="mb-0 text-sm">{{course.name}}</a><br> {{course.category.name}}
                                         </div>
                                     </div>
                                 </th>
@@ -167,7 +180,7 @@
                                             <i class="fas fa-ellipsis-v"></i>
                                         </a>
                                         <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item" [routerLink]="['/staff/courses/details/'+course._id]" routerLinkActive="router-link-active" >Detalhes</a>
+                                            <a class="dropdown-item" [routerLink]="['/staff/courses/details/'+course._id]" routerLinkActive="router-link-active">Detalhes</a>
                                             <a class="dropdown-item" href="javascript:void(0)">Another action</a>
                                             <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
                                         </div>
@@ -441,3 +454,56 @@
     </div>
 
 </div>
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h1 class="modal-title" id="modal-basic-title">Add Chapter</h1>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="courseForm" (ngSubmit)="saveCourseForm()">
+            <div class="col-md-12">
+
+                <div class="form-group">
+                    <div class="input-group input-group-alternative mb-4">
+                        <input class="form-control" formControlName="name" [(ngModel)]="course.name" placeholder="Name" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Select a Course category</label>
+                    <div class="input-group input-group-alternative mb-4">
+                        <select class="form-control" formControlName="name" [(ngModel)]="course.category._id" placeholder="Name" type="text">
+                            <option value={{category._id}} *ngFor="let category of categories">{{category.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-alternative mb-4">
+                        <textarea class="form-control form-control-alternative" rows="3" formControlName="description" [(ngModel)]="course.description" placeholder="Descriptions" type="text"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-alternative mb-4">
+                        <input class="form-control datepicker" formControlName="dueDate" [(ngModel)]="course.dueDate" placeholder="Due date" type="text" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <span class="clearfix"></span>
+                <span class="clearfix"></span>
+            </div>
+
+            {{course|json}}
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn" (click)="modal.close()">Close</button>
+        <button type="submit" class="btn btn-success" (click)="saveCourseForm()">Add</button>
+    </div>
+</ng-template>

@@ -2,14 +2,15 @@
 
     <div class="col-sm-8" style="padding: 15px;">
         <button class="btn btn-sm d-none"><img style="width: 20px; " src="assets/img/icons/collection/icons8-drag.png " /></button>
-        <span (click)="isCollapsed=! isCollapsed " [attr.aria-expanded]="!isCollapsed " aria-controls="collapseExample ">Default Color</span>
+        <span (click)="isCollapsed=! isCollapsed " [attr.aria-expanded]="!isCollapsed " aria-controls="collapseExample ">{{chapter.description}}</span>
+
     </div>
     <div class="col-sm-4 text-right" style="padding: 15px;">
         <ul class="list-inline ">
             <li class="list-inline-item ">
-                <a class="nav-link nav-link-icon " href="# ">
+                <button class="btn btn-sm btn-xs" (click)="open(content)">
                     <i class="ni ni-fat-add "></i>
-                </a>
+                </button>
             </li>
             <li ngbDropdown class="list-inline-item dropdown ">
                 <a ngbDropdownToggle class="nav-link nav-link-icon " href="javascript:void(0) " id="navbar-default_dropdown_1 " role="button " data-toggle="dropdown " aria-haspopup="true " aria-expanded="false ">
@@ -30,7 +31,62 @@
 <div id="collapseExample " [ngbCollapse]="isCollapsed ">
     <div class="card ">
         <div class="card-body ">
-            You can collapse this card by clicking Toggle Button. This is example from ItSolutionStuff.com.
+            <ul class="list-group">
+                <li class="list-group-item bg-secondary" *ngFor="let item of chapter.tasks">{{item.title}}</li>
+            </ul>
         </div>
     </div>
 </div>
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h1 class="modal-title" id="modal-basic-title">Add Task</h1>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click ')">
+  <span aria-hidden="true">&times;</span>
+</button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="taskForm" (ngSubmit)="saveChapterForm()">
+            <div class="col-md-12">
+
+                <div class="form-group">
+                    <div class="input-group input-group-alternative mb-4">
+                        <input class="form-control" formControlName="title" [(ngModel)]="task.title" placeholder="Name" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Type</label>
+                    <div class="input-group input-group-alternative mb-4">
+                        <select class="form-control" formControlName="type" [(ngModel)]="task.type._id" placeholder="Name">
+                            <option value="{{item._id}}" *ngFor="let item of typeTasks">{{item.name}}</option>
+                            </select>
+                    </div>
+                </div>
+                <ckeditor rows="6" [editor]="editor" [(ngModel)]="task.description" formControlName="description"></ckeditor>
+                <span class="clearfix"></span>
+
+                <div class="form-group">
+                    <label>Points</label>
+                    <div class="input-group input-group-alternative mb-4">
+                        <select class="form-control" formControlName="points" [(ngModel)]="task.points">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            </select>
+                    </div>
+                </div>
+            </div>
+
+            {{task|json}}
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn" (click)="modal.close()">Close</button>
+        <button type="submit" class="btn btn-success" (click)="saveChapterForm()">Add</button>
+    </div>
+</ng-template>

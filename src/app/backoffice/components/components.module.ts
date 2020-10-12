@@ -1,3 +1,4 @@
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -11,7 +12,8 @@ import { ModalComponent } from './modal/modal.component';
   imports: [
     CommonModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    CKEditorModule
   ],
   declarations: [
     FooterComponent,

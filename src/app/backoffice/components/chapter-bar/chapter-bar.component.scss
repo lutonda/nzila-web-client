@@ -1,0 +1,11 @@
+.ck.ck-toolbar {
+    border: none !important;
+}
+
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+    border: none
+}
+
+.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred {
+    min-height: 300px;
+}
