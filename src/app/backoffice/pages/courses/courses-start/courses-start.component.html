@@ -129,11 +129,11 @@
                             <tr *ngFor="let course of courses">
                                 <th scope="row">
                                     <div class="media align-items-center">
-                                        <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
-                                            <img alt="Image placeholder" src="assets/img/theme/illu3@2x.png">
-                                        </a>
+                                        <h3 style="padding: 5px 15px;">
+                                            {{course.code|json}}
+                                        </h3>
                                         <div class="media-body">
-                                            <a [routerLink]="['/staff/courses/details/'+course._id]" class="mb-0 text-sm">{{course.name}}</a><br> {{course.category.name}}
+                                            <a [routerLink]="['/staff/courses/details/'+course._id]" class="mb-0 text-sm">{{course.name}}</a><br> {{'course.category.name'}}
                                         </div>
                                     </div>
                                 </th>

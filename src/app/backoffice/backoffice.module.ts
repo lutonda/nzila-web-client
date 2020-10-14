@@ -19,6 +19,8 @@ import { CoursesCreateComponent } from './pages/courses/courses-create/courses-c
 import { CoursesDetailsComponent } from './pages/courses/courses-details/courses-details.component';
 import { ChapterBarComponent } from './components/chapter-bar/chapter-bar.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { TaskDetailsComponent } from './pages/tasks/task-details/task-details.component';
+import { TaskListComponent } from './pages/tasks/task-list/task-list.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     CoursesStartComponent,
     CoursesCreateComponent,
     CoursesDetailsComponent,
-    ChapterBarComponent],
+    ChapterBarComponent,
+    TaskDetailsComponent,
+    TaskListComponent],
   imports: [
     ReactiveFormsModule,
     CommonModule,

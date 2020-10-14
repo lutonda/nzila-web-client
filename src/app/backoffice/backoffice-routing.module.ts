@@ -1,3 +1,5 @@
+import { TaskListComponent } from './pages/tasks/task-list/task-list.component';
+import { TaskDetailsComponent } from './pages/tasks/task-details/task-details.component';
 import { CoursesStartComponent } from './pages/courses/courses-start/courses-start.component';
 import { CoursesDetailsComponent } from './pages/courses/courses-details/courses-details.component';
 import { MapsComponent } from './pages/maps/maps.component';
@@ -16,7 +18,10 @@ const routes: Routes = [
 
   { path: 'courses',                component: CoursesStartComponent },
   { path: 'courses/details/:id',    component: CoursesDetailsComponent },
-  { path: 'courses',                component: CoursesStartComponent },
+  
+  { path: 'tasks/list',                component: TaskListComponent },
+  { path: 'tasks/:id',            component: TaskDetailsComponent },
+  
 
   { path: 'icons',          component: IconsComponent },
   { path: 'maps',           component: MapsComponent }

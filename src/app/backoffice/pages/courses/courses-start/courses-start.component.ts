@@ -13,18 +13,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesStartComponent implements OnInit {
 
-  courses:Array<Course>=[]
-  categories:any=[]
+  courses: Array<Course> = []
+  categories: any = []
   constructor(
-    private coursesService:CoursesService, 
+    private coursesService: CoursesService,
     private courseCategoryService: CourseCategoryService,
     private modalService: NgbModal,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
 
-    this.courseCategoryService.getAll().subscribe(data=>{
-      this.categories=data.data;
+    this.courseCategoryService.getAll().subscribe(data => {
+      this.categories = data.data;
     })
     //let id = this.route.snapshot.paramMap.get('id');
     this.coursesService.getAll().subscribe(data => {
@@ -45,6 +45,8 @@ export class CoursesStartComponent implements OnInit {
     this.coursesService.create(this.course).subscribe(data => {
       this.course = data.data
       this.courses.push(this.course);
+
+      this.course= new Course();
     })
   }
 

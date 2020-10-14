@@ -4,7 +4,7 @@ export class TaskForm {
 
     constructor(fb: FormBuilder) {
         return {
-            name: ['', Validators.required],
+            title: ['', Validators.required],
             description: ['', Validators.required],
             type: [''],
             points: ['']

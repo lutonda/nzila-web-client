@@ -32,7 +32,8 @@
     <div class="card ">
         <div class="card-body ">
             <ul class="list-group">
-                <li class="list-group-item bg-secondary" *ngFor="let item of chapter.tasks">{{item.title}}</li>
+                <li class="list-group-item bg-secondary" *ngFor="let item of chapter.tasks">
+                    <a [routerLink]="['/staff/tasks/'+item._id]" routerLinkActive="router-link-active">{{item.title}}</a></li>
             </ul>
         </div>
     </div>
@@ -86,7 +87,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn" (click)="modal.close()">Close</button>
+        <button type="button" class="btn" (click)="modal.close()" #closeModalButton>Close</button>
         <button type="submit" class="btn btn-success" (click)="saveChapterForm()">Add</button>
     </div>
 </ng-template>

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AppService {
   serverAddress='127.0.0.1:8800';
+  static serverAddress='127.0.0.1:8800';
   constructor(private http: HttpClient) { }
 
   getAll(service: String): Observable<any> {
@@ -20,5 +21,8 @@ export class AppService {
   }
   update(id: String, data: any, service: String): Observable<any> {
     return this.http.post(`http://${this.serverAddress}/api/v1/${service}/update/` + id, data);
+  }
+  row(): HttpClient{
+    return this.http;
   }
 }

@@ -39,9 +39,10 @@ export class ChapterBarComponent implements OnInit {
     this.task.chapter = this.chapter;
     this.tasService.create(this.task).subscribe(data => {
       this.task = data.data;
-      this.task.type=this.typeTasks.filter(x=>x._id==this.task.type)
+      //this.task.type=this.typeTasks.filter(x=>x._id==this.task.type)
       this.chapter.tasks.push(this.task);
       this.task = new Task();
+      document.getElementById("closeModalButton").click()
     })
   }
 }
