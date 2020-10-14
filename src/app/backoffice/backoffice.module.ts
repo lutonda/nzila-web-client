@@ -21,6 +21,7 @@ import { ChapterBarComponent } from './components/chapter-bar/chapter-bar.compon
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { TaskDetailsComponent } from './pages/tasks/task-details/task-details.component';
 import { TaskListComponent } from './pages/tasks/task-list/task-list.component';
+import { AutofocusDirective } from './directives/autofocus.directive';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { TaskListComponent } from './pages/tasks/task-list/task-list.component';
     CoursesDetailsComponent,
     ChapterBarComponent,
     TaskDetailsComponent,
-    TaskListComponent],
+    TaskListComponent,
+    AutofocusDirective],
   imports: [
     ReactiveFormsModule,
     CommonModule,
@@ -48,7 +50,7 @@ import { TaskListComponent } from './pages/tasks/task-list/task-list.component';
     ClipboardModule,
     ComponentsModule,
 
-    CKEditorModule
+    CKEditorModule,
   ],
   exports: [
     BackofficeComponent

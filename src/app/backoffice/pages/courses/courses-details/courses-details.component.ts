@@ -23,7 +23,10 @@ import { CoursesService } from '../../../../services/courses.service';
 export class CoursesDetailsComponent implements OnInit {
 
   course: Course = new Course()
-
+  
+  saveCost(value){
+    this.course.name=value;
+  }
   closeResult = '';
   serverAddress = '';
   typeTasks: Array<TypeTask> = [];

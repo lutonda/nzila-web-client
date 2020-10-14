@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,25 +8,29 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './modal/modal.component';
+import { EditInputComponent } from './edit-input/edit-input.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     NgbModule,
-    CKEditorModule
+    CKEditorModule,
+    FormsModule
   ],
   declarations: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
     ModalComponent,
+    EditInputComponent,
     
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    EditInputComponent
   ]
 })
 export class ComponentsModule { }
