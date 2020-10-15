@@ -5,7 +5,7 @@ export class ChapterForm {
     constructor(fb: FormBuilder) {
         return {
             description: ['ona', Validators.required],
-            isPreviousDependents: [true]
+            isPreviousDependents: ['']
         };
     }
 

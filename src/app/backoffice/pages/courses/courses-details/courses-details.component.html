@@ -7,12 +7,12 @@
             <div class="col-lg-12 col-md-12">
                 <h1 class="display-2 text-white code">#{{course.code}}</h1>
                 <h1 class="display-2 text-white">
-                    <app-edit-input *ngIf="course.name!=null" [data]='course.name' (focusOut)='saveCost($event)'></app-edit-input>
+                    <app-edit-input [data]='course.name' (focusOut)='saveCost($event)'></app-edit-input>
                 </h1>
                 <p class="text-white mt-0 mb-5 ">{{course.description}}</p>
 
-                <a href="#! " class="btn btn-secondary ">Edit</a>
-                <a href="#! " class="btn btn-info "><i class="ni ni-button-play "></i>Publish</a>
+                <a href="#!" class="btn btn-secondary ">Edit</a>
+                <a href="#!" class="btn btn-info "><i class="ni ni-button-play "></i>Publish</a>
             </div>
         </div>
     </div>
@@ -21,22 +21,22 @@
     <div class="row ">
         <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0 ">
             <div class="card card-profile shadow ">
-                <div class="row justify-content-center ">
+                <div class="row justify-content-center" style="overflow: hidden;max-height:300px">
                     <a href="javascript:void(0) ">
-                        <img [useCache]="false " [src]="course.coverPic " class="img-thumbnail ">
+                        <img [src]="course.coverPic" class="img-thumbnail ">
                     </a>
-                    <div class="uploader " appDragAndDrop (fileDropped)="onFileSelect($event) ">
-                        <input type="file " #fileDropRef id="fileDropRef " multiple (change)="onFileSelect($event.target) " name="files " />
-                        <i class="now-ui-icons arrows-1_cloud-upload-94 " style="font-size:94px !important "></i>
+                    <div class="uploader" appDragAndDrop (fileDropped)="onFileSelect($event) ">
+                        <input type="file" #fileDropRef id="fileDropRef" multiple (change)="onFileSelect($event.target)" name="files" />
+                        <i class="now-ui-icons arrows-1_cloud-upload-94" style="font-size:94px !important "></i>
                         <h3>Drag and drop your music file here</h3>
                         <h3>or</h3>
-                        <label for="fileDropRef " class="btn ">Browse for file</label>
+                        <label for="fileDropRef" class="btn ">Browse for file</label>
                     </div>
                 </div>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4 ">
                     <div class="d-flex justify-content-between ">
-                        <a href="javascript:void(0) " class="btn btn-sm btn-info mr-4 ">Connect</a>
-                        <a href="javascript:void(0) " class="btn btn-sm btn-default float-right ">Message</a>
+                        <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4 ">Connect</a>
+                        <a href="javascript:void(0)" class="btn btn-sm btn-default float-right ">Message</a>
                     </div>
                 </div>
                 <div class="card-body pt-0 pt-md-4 ">
@@ -71,7 +71,7 @@
                         <div>
                             <i class="ni education_hat mr-2 "></i>University of Computer Science
                         </div>
-                        <hr class="my-4 " />
+                        <hr class="my-4" />
                         <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
                         <a href="javascript:void(0) ">Show more</a>
                     </div>
@@ -86,11 +86,11 @@
                             <h3 class="mb-0 ">Chapters</h3>
                         </div>
                         <div class="col-6 text-right ">
-                            <a href="#! " class="btn btn-sm btn-primary ">Blog</a>
-                            <a href="#! " class="btn btn-sm btn-primary ">Shedules</a>
-                            <a href="#! " class="btn btn-sm btn-primary ">Tasks</a>
-                            <a href="#! " class="btn btn-sm btn-primary ">People</a>
-                            <button class="btn " (click)="open(content) ">
+                            <button class="btn btn-sm {{tab=='blog' ? 'btn-primary' : ''}}" (click)="setTab('blog')">Blog</button>
+                            <button class="btn btn-sm {{tab=='shedule' ? 'btn-primary' : ''}}" (click)="setTab('shedule')">Shedules</button>
+                            <button class="btn btn-sm {{tab=='module' ? 'btn-primary' : ''}}" (click)="setTab('module')">Modules</button>
+                            <button class="btn btn-sm {{tab=='people' ? 'btn-primary' : ''}}" (click)="setTab('people')">People</button>
+                            <button class="btn" (click)="open(content) ">
                                 <i class="ni ni-fat-add "></i>
                             </button>
                         </div>
@@ -99,8 +99,10 @@
                 <div class="card-body ">
                     <div class="container ">
                         <h1>Angular 8 Bootstrap Collapse Example - ItSolutionStuff.com</h1>
-
-                        <backoffice-chapter-bar [chapter]="item " [typeTasks]="typeTasks " *ngFor="let item of course.chapters "></backoffice-chapter-bar>
+                        <app-backoffice-courses-shedule *ngIf="tab=='shedule'"></app-backoffice-courses-shedule>
+                        <app-backoffice-courses-people *ngIf="tab=='people'" [associations]="course.associations"></app-backoffice-courses-people>
+                        <app-backoffice-courses-module *ngIf="tab=='module'" [typeTasks]="typeTasks" [chapters]="course.chapters"></app-backoffice-courses-module>
+                        <app-backoffice-courses-blog *ngIf="tab=='blog'"></app-backoffice-courses-blog>
                     </div>
                 </div>
             </div>
@@ -111,37 +113,16 @@
 
 <ng-template #content let-modal>
     <div class="modal-header ">
-        <h1 class="modal-title " id="modal-basic-title ">Add Chapter</h1>
-        <button type="button " class="close " aria-label="Close " (click)="modal.dismiss( 'Cross click ') ">
+        <h1 class="modal-title" id="modal-basic-title ">Add {{tab|uppercase}}</h1>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss( 'Cross click ') ">
   <span aria-hidden="true ">&times;</span>
 </button>
     </div>
     <div class="modal-body ">
-        <form [formGroup]="chapterForm " (ngSubmit)="saveChapterForm() ">
-            <div class="col-md-12 ">
-
-                <div class="form-group ">
-                    <div class="input-group input-group-alternative mb-4 ">
-                        <input class="form-control " formControlName="description " [(ngModel)]="chapter.description " placeholder="Name " type="text ">
-                    </div>
-                </div>
-                <span class="clearfix "></span>
-                <div class="form-group ">
-
-                    <label class="custom-toggle pull-left " style="margin-right: 15px; ">
-                      <input type="checkbox " [(ngModel)]="chapter.isPreviousDependents " formControlName="isPreviousDependents ">
-                      <span class="custom-toggle-slider rounded-circle "></span>
-                      
-                    </label>
-                    <label class=" ">Depends on the previous</label>
-                </div>
-                <span class="clearfix "></span>
-            </div>
-
-            {{chapter|json}}
-        </form>
+        <app-backoffice-association-create *ngIf="tab=='people'"></app-backoffice-association-create>
+        <app-backoffice-chapter-create *ngIf="tab=='module'"></app-backoffice-chapter-create>
     </div>
-    <div class="modal-footer ">
+    <div class=" modal-footer ">
         <button type="button " class="btn " (click)="modal.close() ">Close</button>
         <button type="submit " class="btn btn-success " (click)="saveChapterForm() ">Add</button>
     </div>

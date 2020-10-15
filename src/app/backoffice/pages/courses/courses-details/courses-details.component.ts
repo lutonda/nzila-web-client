@@ -27,6 +27,7 @@ export class CoursesDetailsComponent implements OnInit {
   saveCost(value){
     this.course.name=value;
   }
+  tab='people';
   closeResult = '';
   serverAddress = '';
   typeTasks: Array<TypeTask> = [];
@@ -45,6 +46,9 @@ export class CoursesDetailsComponent implements OnInit {
     this.service.getOne(id).subscribe(data => { this.course = data.data; })
     this.typeTaskService.getAll().subscribe(data => this.typeTasks = data.data)
     this.serverAddress = this.service.serverAddress();
+  }
+  setTab(tab){
+    this.tab=tab;
   }
   open(content) {
     this.modalService.open(content, { size: 'lg', ariaLabelledBy: 'modal-basic-title' })

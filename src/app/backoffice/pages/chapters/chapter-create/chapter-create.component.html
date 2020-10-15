@@ -1,0 +1,23 @@
+<form [formGroup]="chapterForm" (ngSubmit)="saveChapterForm() ">
+    <div class="col-md-12 ">
+
+        <div class="form-group ">
+            <div class="input-group input-group-alternative mb-4 ">
+                <input class="form-control" formControlName="description" [(ngModel)]="chapter.description" placeholder="Name" type="text ">
+            </div>
+        </div>
+        <span class="clearfix "></span>
+        <div class="form-group ">
+
+            <label class="custom-toggle pull-left" style="margin-right: 15px; ">
+              <input type="checkbox" [(ngModel)]="chapter.isPreviousDependents" formControlName="isPreviousDependents ">
+              <span class="custom-toggle-slider rounded-circle "></span>
+              
+            </label>
+            <label class=" ">Depends on the previous</label>
+        </div>
+        <span class="clearfix "></span>
+    </div>
+
+    {{chapter|json}}
+</form>

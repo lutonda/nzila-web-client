@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-3" *ngFor="let associate of getInstructors()">
+        <div class="card" style="margin: 15px auto;">
+            <img class="card-img-top" src="assets/img/icons/default/useravatar.png" style="padding: 25px;" alt="Card image cap">
+            <div class="card-body">
+                <h3 class="card-title">{{associate.people.name||associate.people.email||'...'}}</h3>
+                <h5 class="card-title">{{associate.role.name||'-'}}</h5>
+                <a href="#" class="btn btn-primary">Go</a>
+                <a href="#" class="btn btn-sm btn-success pull-right" *ngIf="associate.people.isActive">v</a>
+                <a href="#" class="btn btn-sm btn-danger pull-right" *ngIf="!associate.people.isActive">x</a>
+            </div>
+        </div>
+    </div>
+    <ul class="list-group" style="width: 100%;">
+        <li class="list-group-item" *ngFor="let associate of getNotInstructors()">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>{{associate.people.name||associate.people.email|| '...'}}</h3>
+                    <h5 class="card-title">{{associate.role.name||'-'}}</h5>
+                    <span class="badge badge-warning" *ngIf="!associate.people.isActive">Pending</span>
+                </div>
+                <div class="col-md-6">
+                    {{associate.createdAt}} {{associate.updatedAt}}
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

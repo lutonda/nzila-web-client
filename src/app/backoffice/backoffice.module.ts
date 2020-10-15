@@ -22,6 +22,12 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { TaskDetailsComponent } from './pages/tasks/task-details/task-details.component';
 import { TaskListComponent } from './pages/tasks/task-list/task-list.component';
 import { AutofocusDirective } from './directives/autofocus.directive';
+import { CoursesPeopleComponent } from './pages/courses/components/courses-people/courses-people.component';
+import { CoursesModuleComponent } from './pages/courses/components/courses-module/courses-module.component';
+import { CoursesBlogComponent } from './pages/courses/components/courses-blog/courses-blog.component';
+import { CoursesSheduleComponent } from './pages/courses/components/courses-shedule/courses-shedule.component';
+import { AssociationCreateComponent } from './pages/associations/association-create/association-create.component';
+import { ChapterCreateComponent } from './pages/chapters/chapter-create/chapter-create.component';
 
 
 @NgModule({
@@ -39,7 +45,13 @@ import { AutofocusDirective } from './directives/autofocus.directive';
     ChapterBarComponent,
     TaskDetailsComponent,
     TaskListComponent,
-    AutofocusDirective],
+    AutofocusDirective,
+    CoursesPeopleComponent,
+    CoursesModuleComponent,
+    CoursesBlogComponent,
+    CoursesSheduleComponent,
+    AssociationCreateComponent,
+    ChapterCreateComponent],
   imports: [
     ReactiveFormsModule,
     CommonModule,
