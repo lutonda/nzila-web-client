@@ -1,0 +1,10 @@
+.associated {
+    text-transform: none !important;
+    margin: 5px;
+    * {
+        padding: 5px;
+    }
+    .remove {
+        cursor: pointer;
+    }
+}
